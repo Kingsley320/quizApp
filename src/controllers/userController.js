@@ -29,9 +29,9 @@ exports.createUser = async (req, res) => {
 
 exports.signInUser = async (req, res) => {
   try {
-    const { emailorIr, password } = req.body;
+    const { userID, password } = req.body;
     const user = await User.findOne({
-      $or: [{ email: emailorIr }, { ir_no: emailorIr }],
+      $or: [{ email: userID }, { ir_no: userID }],
     });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
