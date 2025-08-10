@@ -9,7 +9,7 @@ const handleRequest = async (req, res, callback) => {
   } catch (err) {
     // Handle duplicate key error
     if (err.message.includes("duplicate key")) {
-      return res.status(400).json({ message: "Info already exists" });
+      return res.status(409).json({ message: "Info already exists" });
     }
 
     // Other errors

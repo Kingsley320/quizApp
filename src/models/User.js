@@ -3,12 +3,12 @@ const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true, lowercase: true,  match: [/^[a-zA-Z0-9._%+-]+@firs\.gov\.ng$/, "Please use your official firs.gov.ng email address"] },
   password: {
     type: String,
     required: true,
     minlength: 8,
-    // match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
+    match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
   },
   role: { type: String, required:true, enum: ["admin", "user", "security"], default: "user" },
   ir_no: {type: String, required: true},
