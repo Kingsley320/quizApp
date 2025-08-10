@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "nodemon index.js",
     "build": "echo 'No build step needed'",
-    "start": "node ./src/index.js",
+    "start": "node -r dotenv/config src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "20.x"
   },
   "keywords": [],
   "author": "",
