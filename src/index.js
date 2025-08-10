@@ -1,8 +1,11 @@
-require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
 const deviceRoutes = require('./routes/deviceRoutes');
+// require('dotenv').config();
+
+require('dotenv').config({ path: './.env' });
+
 
 
 const app = express();

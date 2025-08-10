@@ -1,12 +1,12 @@
 {
   "name": "myapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "Application to verify Staff & Items",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js",
+    "dev": "nodemon index.js",
     "build": "echo 'No build step needed'",
-    "start": "node index.js",
+    "start": "node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
