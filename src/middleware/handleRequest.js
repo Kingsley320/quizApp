@@ -12,6 +12,11 @@ const handleRequest = async (req, res, callback) => {
       return res.status(409).json({ message: "Info already exists" });
     }
 
+    // Handle Cast errors
+     if (err.message.includes("CastError")) {
+      return res.status(409).json({ message: "Value type mismatch" });
+    }
+
     // Other errors
     res.status(400).json({ message: err.message || "An error occurred" });
   }
