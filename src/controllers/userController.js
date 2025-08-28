@@ -14,14 +14,10 @@ exports.getAllUsers = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   handleRequest(req, res, async (req) => {
-    const { name, email, password, ir_no, rank, department } = req.body;
+    const { name, password} = req.body;
     const newUser = await User.create({
       name,
-      email,
       password,
-      ir_no,
-      rank,
-      department,
     });
     return newUser;
   });
@@ -29,9 +25,9 @@ exports.createUser = async (req, res) => {
 
 exports.signInUser = async (req, res) => {
   try {
-    const { userID, password } = req.body;
+    const { name, password } = req.body;
     const user = await User.findOne({
-      $or: [{ email: userID }, { ir_no: userID }],
+      name: name,
     });
     if (!user) {
       return res.status(404).json({ message: "User not found" });

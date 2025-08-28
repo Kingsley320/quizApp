@@ -3,30 +3,11 @@ const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  email: { type: String, required: true, unique: true, lowercase: true,  match: [/^[a-zA-Z0-9._%+-]+@firs\.gov\.ng$/, "Please use your official firs.gov.ng email address"] },
   password: {
     type: String,
     required: true,
     minlength: 8,
-    match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
-  },
-  role: { type: String, required:true, enum: ["admin", "user", "security"], default: "user" },
-  ir_no: {type: String, required: true},
-  rank: {type: String, required: true, },
-  department: {type: String, required: true},
-  createdAt: {
-    type: Date,
-    default: () => {
-      const offset = 1 * 60;
-      return new Date(Date.now() + offset * 60 * 1000);
-    },
-  },
-  updatedAt: {
-    type: Date,
-    default: () => {
-      const offset = 1 * 60;
-      return new Date(Date.now() + offset * 60 * 1000);
-    },
+    // match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
   },
 });
 
@@ -40,6 +21,8 @@ userSchema.pre("save", async function (next) {
     this.password = await bcrypt.hash(this.password, salt);
     next();
   } catch (err) {
+    console.log(err);
+    
     next(err);
   }
 });
