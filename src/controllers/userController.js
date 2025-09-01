@@ -1,5 +1,4 @@
 const User = require("../models/User");
-// import handleRequest from "../middleware/handleRequest.js"
 const handleRequest = require("../middleware/handleRequest.js");
 const bcrypt = require("bcrypt");
 
